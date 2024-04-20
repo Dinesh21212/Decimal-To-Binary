@@ -1,0 +1,44 @@
+def convert_decimal_to_binary():
+    
+    while True:
+        try:
+            decimal_number = input("Enter decimal number: ")        #User input
+            binary_value=""
+            if decimal_number.lower() == "quit":        #exit crieteria
+                return "Exiting program"
+            
+            default_n_value = int(decimal_number)   # Convert input to integer
+            n = int(decimal_number)
+
+            # Handle special cases
+            if (decimal_number[0] == "0" and default_n_value !=0)   or (decimal_number[0] == "-" and decimal_number[1] == "0" ):
+                raise ValueError
+
+            elif n == 0:
+                print("0b0")
+
+            elif n == 1:
+                print("0b1")
+
+            elif n == -1:
+                print("-0b1")
+
+            
+            else:               # Check for leading zeros
+                while n != 1:
+                    n,remainder = divmod(abs(n),2)
+                    binary_value = str(remainder) + binary_value
+
+                if default_n_value > 0 :
+                    print("0b1" + binary_value)
+                else:
+                    print("-0b1" + binary_value)
+
+        except ValueError:
+            print("enter a valid integer")
+            #return convert_decimal_to_binary()
+
+
+
+# main
+convert_decimal_to_binary()
